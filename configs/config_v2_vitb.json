@@ -23,7 +23,6 @@
     "ema": true,
     "f16": true,
     "clipping": 1.0,
-    "pretrained": "/srv/beegfs02/scratch/3d_tracking/data/pami2025_unidepth/checkpoints/unidepth-v2-vitb14.pt",
     "losses": {
         "depth": {
             "name": "SILog",
@@ -56,7 +55,7 @@
             "min_samples": 6
         },
         "confidence": {
-            "name": "Regression",
+            "name": "Confidence",
             "weight": 0.1,
             "gamma": 1.0,
             "alpha": 1.0,
