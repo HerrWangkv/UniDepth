@@ -453,8 +453,8 @@ def recursive_to(infos, device, non_blocking, cls):
 
 def masked_mean(
     data: torch.Tensor,
-    mask: torch.Tensor | None = None,
-    dim: list[int] | None = None,
+    mask = None,
+    dim = None,
     keepdim: bool = False,
 ) -> torch.Tensor:
     dim = dim if dim is not None else list(range(data.dim()))

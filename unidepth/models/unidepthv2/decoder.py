@@ -9,8 +9,13 @@ import torch.nn.functional as F
 from einops import rearrange
 from timm.models.layers import trunc_normal_
 
-from unidepth.layers import (MLP, AttentionBlock, AttentionLayer,
-                             PositionEmbeddingSine, ResUpsampleBil)
+from unidepth.layers import (
+    MLP,
+    AttentionBlock,
+    AttentionLayer,
+    PositionEmbeddingSine,
+    ResUpsampleBil,
+)
 from unidepth.utils.coordinate import coords_grid
 from unidepth.utils.geometric import flat_interpolate
 from unidepth.utils.positional_embedding import generate_fourier_features
@@ -120,7 +125,7 @@ class DepthHead(nn.Module):
         hidden_dim: int,
         num_heads: int = 8,
         expansion: int = 4,
-        depths: int | list[int] = 4,
+        depths: int = 4,
         camera_dim: int = 256,
         dropout: float = 0.0,
         kernel_size: int = 7,
@@ -391,7 +396,7 @@ class Decoder(nn.Module):
         )
 
         ### LEGACY CODE FOR TRAINING
-        # if self.training and rays_gt is not None:  
+        # if self.training and rays_gt is not None:
         #     prob = -1.0  # 0.8 * (1 - tanh(self.steps / 100000)) + 0.2
         #     where_use_gt_rays = torch.rand(B, 1, 1, device=device, dtype=dtype) < prob
         #     where_use_gt_rays = where_use_gt_rays.int()
@@ -399,7 +404,7 @@ class Decoder(nn.Module):
 
         rays = rays_pred if rays_gt is None else rays_gt
         rays = rearrange(rays, "b c h w -> b (h w) c")
-        
+
         return intrinsics_matrix, rays
 
     def forward(

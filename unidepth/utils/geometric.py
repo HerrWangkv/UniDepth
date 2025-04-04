@@ -224,7 +224,7 @@ def downsample(data: torch.Tensor, downsample_factor: int = 2):
     return data
 
 
-@torch.jit.script
+# @torch.jit.script
 def flat_interpolate(
     flat_tensor: torch.Tensor,
     old: Tuple[int, int],
@@ -252,8 +252,8 @@ def flat_interpolate(
     return flat_tensor_interp.contiguous()
 
 
-@torch.jit.script
-def dilate(image, kernel_size: int | tuple[int, int]):
+# @torch.jit.script
+def dilate(image, kernel_size):
     if isinstance(kernel_size, int):
         kernel_size = (kernel_size, kernel_size)
     device, dtype = image.device, image.dtype
@@ -268,8 +268,8 @@ def dilate(image, kernel_size: int | tuple[int, int]):
     return dilated_image.to(dtype)
 
 
-@torch.jit.script
-def erode(image, kernel_size: int | tuple[int, int]):
+# @torch.jit.script
+def erode(image, kernel_size):
     if isinstance(kernel_size, int):
         kernel_size = (kernel_size, kernel_size)
     device, dtype = image.device, image.dtype

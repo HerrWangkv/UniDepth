@@ -313,8 +313,8 @@ class EdgeGuidedLocalSSI(nn.Module):
         input: torch.Tensor,
         target: torch.Tensor,
         mask: torch.Tensor,
-        image: torch.Tensor | None = None,
-        validity_mask: torch.Tensor | None = None,
+        image = None,
+        validity_mask = None,
         *args,
         **kwargs,
     ) -> torch.Tensor:

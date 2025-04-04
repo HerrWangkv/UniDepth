@@ -11,8 +11,13 @@ import torch.nn.functional as F
 from einops import rearrange
 from timm.models.layers import trunc_normal_
 
-from unidepth.layers import (MLP, AttentionBlock, ConvUpsample, NystromBlock,
-                             PositionEmbeddingSine)
+from unidepth.layers import (
+    MLP,
+    AttentionBlock,
+    ConvUpsample,
+    NystromBlock,
+    PositionEmbeddingSine,
+)
 from unidepth.utils.geometric import flat_interpolate, generate_rays
 from unidepth.utils.misc import max_stack
 from unidepth.utils.sht import rsh_cart_8
@@ -113,7 +118,7 @@ class DepthHead(nn.Module):
         hidden_dim: int,
         num_heads: int = 8,
         expansion: int = 4,
-        depths: int | list[int] = 4,
+        depths: int = 4,
         camera_dim: int = 256,
         num_resolutions: int = 4,
         dropout: float = 0.0,

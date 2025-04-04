@@ -33,7 +33,7 @@ class Regression(nn.Module):
         self,
         input: torch.Tensor,
         target: torch.Tensor,
-        mask: torch.Tensor | None = None,
+        mask = None,
         **kwargs,
     ) -> torch.Tensor:
         if mask is not None:  # usually it is just repeated

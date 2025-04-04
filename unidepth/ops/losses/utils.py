@@ -46,7 +46,7 @@ def masked_mean_var(
     return mask_mean, mask_var
 
 
-def masked_mean(data: torch.Tensor, mask: torch.Tensor | None, dim: List[int]):
+def masked_mean(data: torch.Tensor, mask, dim: List[int]):
     if mask is None:
         return data.mean(dim=dim, keepdim=True)
     mask = mask.float()
@@ -58,7 +58,7 @@ def masked_mean(data: torch.Tensor, mask: torch.Tensor | None, dim: List[int]):
 
 
 def masked_quantile(
-    data: torch.Tensor, mask: torch.Tensor | None, dims: List[int], q: float
+    data: torch.Tensor, mask, dims: List[int], q: float
 ):
     """
     Compute the quantile of the data only where the mask is 1 along specified dimensions.

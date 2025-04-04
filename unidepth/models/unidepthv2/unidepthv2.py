@@ -11,18 +11,24 @@ import warnings
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-import torchvision.transforms.v2.functional as TF
+import torchvision.transforms.functional as TF
 from einops import rearrange
 from huggingface_hub import PyTorchModelHubMixin
 
 from unidepth.models.unidepthv2.decoder import Decoder
 from unidepth.utils.camera import BatchCamera, Camera, Pinhole
-from unidepth.utils.constants import (IMAGENET_DATASET_MEAN,
-                                      IMAGENET_DATASET_STD)
+from unidepth.utils.constants import IMAGENET_DATASET_MEAN, IMAGENET_DATASET_STD
 from unidepth.utils.distributed import is_main_process
-from unidepth.utils.misc import (first_stack, get_params, last_stack, match_gt,
-                                 match_intrinsics, max_stack, mean_stack,
-                                 softmax_stack)
+from unidepth.utils.misc import (
+    first_stack,
+    get_params,
+    last_stack,
+    match_gt,
+    match_intrinsics,
+    max_stack,
+    mean_stack,
+    softmax_stack,
+)
 
 STACKING_FNS = {
     "max": max_stack,
@@ -241,7 +247,7 @@ class UniDepthV2(
     def infer(
         self,
         rgb: torch.Tensor,
-        camera: torch.Tensor | Camera | None = None,
+        camera=None,
         normalize=True,
     ):
         ratio_bounds = self.shape_constraints["ratio_bounds"]
